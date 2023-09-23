@@ -12,12 +12,12 @@
 */
 int main(int ac, char *argv[], char **env)
 {char *comand_line, **comands = NULL;
-	int status = 0, tst_status = 0;
+	int status = 0, prev_ex = 0, cnt = 0;
 	(void)ac;
 	(void)env;
 
 	while (1)
-	{
+	{cnt++;
 		comand_line = read_line();
 		if (comand_line == NULL)
 		{
@@ -29,11 +29,9 @@ int main(int ac, char *argv[], char **env)
 		if (!comands)
 			continue;
 		if (comands[0] != NULL)
-			status = shell_exec(comands, argv);
-		if (status == 9)
-			exit(tst_status);
-		tst_status = status;
+			status = shell_exec(comands, argv, prev_ex, cnt);
+		exit_father(comands, status);
+		prev_ex = status;
 	}
 	return (0);
 }
-

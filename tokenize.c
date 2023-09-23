@@ -6,7 +6,7 @@
 */
 /* dont forget to deleate realloc & fprintf as they are not allowed*/
 char **splitString(char *str)
-{char **words = NULL, *delimiter = " \n";
+{char **words = NULL, *delimiter = " \t\n";
 	int cnt = 0, i = 0;
 	char *token, *tmp;
 
@@ -37,4 +37,3 @@ char **splitString(char *str)
 	free(str);
 	return (words);
 }
-
